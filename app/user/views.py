@@ -3,7 +3,6 @@ Views for the User API.
 """
 
 from rest_framework import generics
-from core.models import User
 from .serializers import UserSerializer, AuthTokenSerializer
 from rest_framework.settings import api_settings
 
