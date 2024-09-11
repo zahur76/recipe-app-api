@@ -19,7 +19,20 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create a new user with validated data"""
 
+        print(
+            validated_data.get(
+                "email",
+            )
+        )
+
         return get_user_model().objects.create_user(**validated_data)
+
+    def validate_email(self, value):
+        """Validate email length"""
+
+        if len(value) > 50:
+            raise serializers.ValidationError("Email too long")
+        return value
 
     def update(self, instance, validated_data):
         """Update a user with validated data"""
